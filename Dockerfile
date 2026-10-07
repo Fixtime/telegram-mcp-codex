@@ -18,4 +18,5 @@ COPY requirements-analysis-dev.lock ./
 RUN pip install --no-cache-dir --require-hashes -r requirements-analysis-dev.lock
 COPY telegram_analysis ./telegram_analysis
 COPY analysis_tests ./analysis_tests
+COPY main.py telegram_analysis_mcp.py ./
 CMD ["python", "-m", "pytest", "analysis_tests", "-q"]

@@ -1,4 +1,5 @@
 import json
+import base64
 import os
 import sys
 import subprocess
@@ -251,8 +252,11 @@ async def test_pagination_preserves_default_window_and_no_gaps(tmp_path):
 async def test_cursor_tampering_and_cross_chat_query(tmp_path):
     svc = await service(tmp_path)
     token = (await svc.list_messages(42, limit=1))["next_cursor"]
+    modified = bytearray(base64.urlsafe_b64decode(token))
+    modified[0] ^= 1
+    tampered = base64.urlsafe_b64encode(modified).decode()
     for cid, q, cursor in [
-        (42, None, "x" + token[1:]),
+        (42, None, tampered),
         (-1000000000042, None, token),
         (42, "Hello", token),
     ]:
