@@ -4,6 +4,12 @@ The implementation lives in the telegram_mcp package. This module keeps the
 historic `main` import path and console script target working.
 """
 
+if __name__ == "__main__":
+    from telegram_analysis.server import main as analysis_main
+
+    analysis_main()
+    raise SystemExit(0)
+
 from telegram_mcp.install_guard import UnsafeInstallationError, assert_safe_distribution
 
 try:
@@ -81,7 +87,3 @@ async def _resolve_writable_file_path(*, raw_path, default_filename, ctx, tool_n
 def _configure_allowed_roots_from_cli(argv=None) -> None:
     _runtime._configure_allowed_roots_from_cli(argv)
     globals()["SERVER_ALLOWED_ROOTS"] = _runtime.SERVER_ALLOWED_ROOTS
-
-
-if __name__ == "__main__":
-    main()

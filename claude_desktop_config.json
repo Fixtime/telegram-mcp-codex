@@ -1,13 +1,10 @@
 {
-    "mcpServers": {
-        "telegram-mcp": {
-            "command": "/PATH-TO/uv",
-            "args": [
-                "--directory",
-                "/PATH-TO/telegram-mcp",
-                "run",
-                "main.py"
-            ]
-        }
+  "mcpServers": {
+    "telegram-analysis": {
+      "command": "/ABSOLUTE/PATH/telegram-mcp-codex/.venv-analysis/bin/python",
+      "args": [
+        "/ABSOLUTE/PATH/telegram-mcp-codex/telegram_analysis_mcp.py"
+      ]
     }
+  }
 }

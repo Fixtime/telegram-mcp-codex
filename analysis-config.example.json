@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "api_id": 12345,
+  "api_hash": "00000000000000000000000000000000",
+  "account_id": 123456789,
+  "chat_scope": "all",
+  "timezone": "Europe/Moscow",
+  "max_days": 31,
+  "max_messages": 200,
+  "max_dialogs": 5000,
+  "max_text_chars": 8192,
+  "max_output_bytes": 196608,
+  "calls_per_minute": 30,
+  "timeout_seconds": 35
+}

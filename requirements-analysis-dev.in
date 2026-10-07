@@ -1,0 +1,4 @@
+-r requirements-analysis.in
+pytest==9.1.1
+pytest-asyncio==1.4.0
+black==26.5.1

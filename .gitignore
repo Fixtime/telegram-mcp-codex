@@ -130,6 +130,10 @@ celerybeat.pid
 # Environments
 .env
 .venv
+.venv-analysis/
+private_state/
+*.secret
+config.ready
 env/
 venv/
 ENV/

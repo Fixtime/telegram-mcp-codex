@@ -1,0 +1,11 @@
+[mcp_servers.telegram_analysis]
+command = "/ABSOLUTE/PATH/telegram-mcp-codex/.venv-analysis/bin/python"
+args = ["/ABSOLUTE/PATH/telegram-mcp-codex/telegram_analysis_mcp.py"]
+enabled_tools = ["list_chats", "get_chat", "list_messages", "get_message_context", "search_messages"]
+startup_timeout_sec = 45
+tool_timeout_sec = 45
+
+# No API hash, Telegram session or login code belongs in Codex configuration.
+# Defaults to ~/.local/share/telegram-analysis/config.json.
+# For another private service user, launch with an admin-managed wrapper or container;
+# merely changing the path does not isolate credentials from the same OS user.

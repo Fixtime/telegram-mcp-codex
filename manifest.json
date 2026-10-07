@@ -1,77 +1,57 @@
 {
   "$schema": "https://raw.githubusercontent.com/modelcontextprotocol/mcpb/main/dist/mcpb-manifest.schema.json",
   "manifest_version": "0.4",
-  "name": "telegram-mcp",
-  "display_name": "Telegram",
-  "version": "2.0.1",
-  "description": "Read, search and send Telegram messages from your own account via Telethon",
+  "name": "telegram-analysis",
+  "display_name": "Telegram Analysis",
+  "version": "1.0.0",
+  "description": "Read-only Telegram chats, groups and channels for Codex. Five bounded tools.",
   "author": {
-    "name": "chigwell"
+    "name": "Fixtime"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/chigwell/telegram-mcp"
+    "url": "https://github.com/Fixtime/telegram-mcp-codex"
   },
-  "homepage": "https://github.com/chigwell/telegram-mcp",
-  "documentation": "https://github.com/chigwell/telegram-mcp#readme",
-  "support": "https://github.com/chigwell/telegram-mcp/issues",
+  "homepage": "https://github.com/Fixtime/telegram-mcp-codex",
+  "documentation": "https://github.com/Fixtime/telegram-mcp-codex#readme",
   "server": {
     "type": "uv",
-    "entry_point": "main.py",
+    "entry_point": "telegram_analysis_mcp.py",
     "mcp_config": {
       "command": "uv",
-      "args": ["run", "--directory", "${__dirname}", "main.py"],
-      "env": {
-        "TELEGRAM_API_ID": "${user_config.api_id}",
-        "TELEGRAM_API_HASH": "${user_config.api_hash}",
-        "TELEGRAM_SESSION_STRING": "${user_config.session_string}",
-        "TELEGRAM_ALLOWED_CHAT_IDS": "${user_config.allowed_chat_ids}",
-        "TELEGRAM_ALLOWED_ROOTS": "${user_config.allowed_root}"
-      }
+      "args": [
+        "run",
+        "--no-project",
+        "--with-requirements",
+        "${__dirname}/requirements-analysis.lock",
+        "${__dirname}/telegram_analysis_mcp.py",
+        "--config",
+        "${user_config.config_path}"
+      ]
     }
   },
   "user_config": {
-    "api_id": {
+    "config_path": {
       "type": "string",
-      "title": "API ID",
-      "description": "From https://my.telegram.org/apps",
-      "required": true
-    },
-    "api_hash": {
-      "type": "string",
-      "title": "API hash",
-      "description": "From https://my.telegram.org/apps",
+      "title": "Private configuration path",
       "required": true,
-      "sensitive": true
-    },
-    "session_string": {
-      "type": "string",
-      "title": "Session string",
-      "description": "Generate it with session_string_generator.py (see the README). Anyone holding it has full access to your account.",
-      "required": true,
-      "sensitive": true
-    },
-    "allowed_chat_ids": {
-      "type": "string",
-      "title": "Allowed chats",
-      "description": "Optional comma-separated chat IDs or @usernames. When set, every other chat is hidden from Claude.",
-      "required": false,
-      "default": ""
-    },
-    "allowed_root": {
-      "type": "directory",
-      "title": "Files directory",
-      "description": "Optional directory that file tools (send_file, download_media, ...) may read from and write to.",
-      "required": false,
-      "default": ""
+      "description": "Absolute path to config.json created by local terminal setup. Do not paste credentials here."
     }
   },
   "compatibility": {
-    "platforms": ["darwin", "linux", "win32"],
+    "platforms": [
+      "darwin",
+      "linux"
+    ],
     "runtimes": {
-      "python": ">=3.10"
+      "python": ">=3.11"
     }
   },
-  "keywords": ["telegram", "telethon", "messaging", "chat"],
+  "keywords": [
+    "telegram",
+    "read-only",
+    "analysis",
+    "codex"
+  ],
   "license": "Apache-2.0"
 }
